@@ -1,0 +1,8 @@
+If you are using Windows, make sure you have the necessary USB to UART driver isntalled:
+
+Go Here: https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads#software
+
+Download Link: https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip
+
+Make sure you slect the x64 install version.
+
