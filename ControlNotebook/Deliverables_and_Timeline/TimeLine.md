@@ -3,7 +3,7 @@ Internal 3:1 planetary gear box must be finished by end of September.
 
 
 Elecrtrical:
-Design for internal power distribution willbegin once hte internal devices have been selcted. This should begin aounrd middle to late October. 
+Design for internal power distribution will begin once the internal devices have been selcted. This should begin around  middle to late October. 
 
 
 Computer:
@@ -17,3 +17,5 @@ Updates:
 -Current MOtors are two week and fragile. 
 -Contacting Suppliers for Hallow Shaft pancake motors with around ~ 2.0kgf-cm
 
+9/15/2025
+-New motors have been found. We need to aquire funding and setup a fedex shipping account. 
