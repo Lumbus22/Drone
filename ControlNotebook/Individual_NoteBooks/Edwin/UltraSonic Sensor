@@ -1,5 +1,6 @@
 //** 5V for sensor, 3.3 for esp32 **
 //** Trig pin to GPIO 5 and the Echo pin to GPIO 18 **
+//** Max range 80cm +/- 3cm **
 const int trigPin = 5;
 const int echoPin = 18;
 
