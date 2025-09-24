@@ -1,0 +1,4 @@
+Flesh out mechanical designs of wheels such as:
+- design planet carrier
+- design mecanum wheel
+- tinker with computer vision and arduino
