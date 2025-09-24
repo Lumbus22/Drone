@@ -1,0 +1,8 @@
+# YOLO11 Object Detection Dependencies
+ultralytics>=8.0.0
+opencv-python>=4.8.0
+numpy>=1.21.0
+pillow>=8.3.0
+torch>=1.11.0
+torchvision>=0.12.0
+matplotlib>=3.5.0
