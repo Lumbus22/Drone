@@ -2,6 +2,8 @@
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 
+//Make sure the adafruit mpu6050 library is installed
+
 Adafruit_MPU6050 mpu;
 
 void setup(void) {
