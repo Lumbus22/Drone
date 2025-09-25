@@ -56,6 +56,20 @@ COCO_CLASSES = [
     'toothbrush'
 ]
 
+# Face Recognition Configuration
+FACE_RECOGNITION_CONFIG = {
+    "enabled": True,  # Enable/disable face recognition
+    "database_path": "faces_database",  # Directory to store face encodings
+    "recognition_threshold": 0.6,  # Lower = more strict matching
+    "face_detection_model": "hog",  # "hog" (faster) or "cnn" (more accurate, requires GPU)
+    "num_jitters": 1,  # Number of times to re-sample face for encoding (higher = more accurate, slower)
+    "show_confidence": True,  # Show recognition confidence scores
+    "min_face_size": 50,  # Minimum face size in pixels
+    "recognition_interval": 5,  # Frames between face recognition attempts (for performance)
+    "save_unknown_faces": True,  # Save unknown faces for later review
+    "unknown_faces_path": "unknown_faces",  # Directory for unknown faces
+}
+
 # Colors for different classes (BGR format for OpenCV)
 CLASS_COLORS = [
     (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255),
@@ -63,3 +77,10 @@ CLASS_COLORS = [
     (128, 0, 128), (0, 128, 128), (192, 192, 192), (128, 128, 128), (255, 165, 0),
     (255, 20, 147), (0, 191, 255), (255, 69, 0), (255, 140, 0), (75, 0, 130),
 ]
+
+# Face recognition colors (BGR format)
+FACE_COLORS = {
+    "known": (0, 255, 0),      # Green for known faces
+    "unknown": (0, 0, 255),    # Red for unknown faces
+    "processing": (0, 255, 255), # Yellow for faces being processed
+}

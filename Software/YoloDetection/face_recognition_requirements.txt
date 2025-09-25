@@ -1,0 +1,26 @@
+# Face Recognition Dependencies
+# Install these separately if you want face recognition features
+
+# Required for face recognition
+cmake>=3.18.0
+dlib>=19.24.0
+face-recognition>=1.3.0
+
+# Installation instructions for Windows:
+# 1. First try: pip install -r face_recognition_requirements.txt
+# 2. If that fails, use one of these alternatives:
+#    
+#    Option A - Use Anaconda (Recommended for Windows):
+#      conda install -c conda-forge dlib
+#      conda install -c conda-forge face_recognition
+#    
+#    Option B - Install Visual Studio Build Tools:
+#      Download from: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+#      Install C++ build tools, then: pip install dlib face_recognition
+#    
+#    Option C - Use precompiled wheels:
+#      Check: https://github.com/z-mahmud22/Dlib_Windows_Python3.x
+#      Download appropriate wheel for your Python version
+#    
+#    Option D - Use WSL2 (Windows Subsystem for Linux):
+#      Install WSL2 and run the project in Linux environment

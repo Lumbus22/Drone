@@ -10,6 +10,17 @@ from ultralytics import YOLO
 import argparse
 import time
 from config import CAMERA_CONFIG
+try:
+    from config import FACE_RECOGNITION_CONFIG
+    from face_recognition_module import FaceRecognizer
+    FACE_RECOGNITION_AVAILABLE = True
+except ImportError as e:
+    print("ℹ️  Face recognition not available (dependencies not installed)")
+    print(f"   Error: {e}")
+    print("   Install with: pip install -r face_recognition_requirements.txt")
+    FACE_RECOGNITION_AVAILABLE = False
+    FACE_RECOGNITION_CONFIG = {"enabled": False}
+    FaceRecognizer = None
 
 
 class YOLODetector:
@@ -209,6 +220,8 @@ def main():
     parser.add_argument("--no-display", action="store_true", help="Don't display video feed")
     parser.add_argument("--max-reconnect", type=int, default=-1, help="Max reconnection attempts (-1 = infinite)")
     parser.add_argument("--reconnect-delay", type=float, default=2.0, help="Delay between reconnection attempts")
+    parser.add_argument("--face-recognition", action="store_true", help="Enable face recognition")
+    parser.add_argument("--no-face-recognition", action="store_true", help="Disable face recognition")
     
     args = parser.parse_args()
     
@@ -219,6 +232,29 @@ def main():
             confidence=args.confidence,
             device=args.device
         )
+        
+        # Initialize face recognizer
+        face_recognizer = None
+        if FACE_RECOGNITION_AVAILABLE:
+            face_recognition_enabled = FACE_RECOGNITION_CONFIG.get("enabled", True)
+            if args.face_recognition:
+                face_recognition_enabled = True
+            elif args.no_face_recognition:
+                face_recognition_enabled = False
+            
+            if face_recognition_enabled:
+                try:
+                    face_recognizer = FaceRecognizer()
+                    print("✅ Face recognition enabled")
+                except Exception as e:
+                    print(f"❌ Failed to initialize face recognition: {e}")
+                    print("   Continuing with object detection only...")
+                    face_recognizer = None
+        else:
+            if args.face_recognition:
+                print("❌ Face recognition requested but dependencies not installed")
+                print("   Install with: pip install -r face_recognition_requirements.txt")
+                print("   Continuing with object detection only...")
         
         # Initialize camera with reconnection support
         camera = CameraManager(
@@ -234,6 +270,8 @@ def main():
         
         print("Starting object detection...")
         print("Press 'q' to quit, 's' to save current frame")
+        if face_recognizer:
+            print("Press 'r' to register current person to face database")
         print("Camera will automatically reconnect if USB connection is lost")
         
         frame_count = 0
@@ -282,8 +320,16 @@ def main():
             if frame is None:
                 continue
             
-            # Perform detection
+            # Perform object detection
             annotated_frame, results = detector.detect_objects(frame)
+            
+            # Perform face recognition if enabled
+            recognized_faces = []
+            if face_recognizer and face_recognizer.is_enabled():
+                try:
+                    recognized_faces, annotated_frame = face_recognizer.detect_and_recognize_faces(annotated_frame)
+                except Exception as e:
+                    print(f"❌ Face recognition error: {e}")
             
             # Calculate FPS
             frame_count += 1
@@ -305,6 +351,12 @@ def main():
                 cv2.putText(annotated_frame, status_text, 
                            (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.7, status_color, 2)
                 
+                # Add face recognition status
+                if face_recognizer:
+                    face_status = f"Face Recognition: ON ({len(recognized_faces)} faces)"
+                    cv2.putText(annotated_frame, face_status, 
+                               (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
+                
                 cv2.imshow("YOLO11 Object Detection", annotated_frame)
                 
                 # Handle key presses
@@ -315,6 +367,16 @@ def main():
                     filename = f"detection_frame_{int(time.time())}.jpg"
                     cv2.imwrite(filename, annotated_frame)
                     print(f"Saved frame: {filename}")
+                elif key == ord('r') and face_recognizer:
+                    # Register current person
+                    name = input("\nEnter name for face registration: ").strip()
+                    if name:
+                        if face_recognizer.add_person_from_camera(name, frame):
+                            print(f"✅ {name} registered successfully!")
+                        else:
+                            print(f"❌ Failed to register {name}")
+                    else:
+                        print("❌ No name entered")
             
             # Print detections
             if len(results.boxes) > 0:
@@ -326,7 +388,13 @@ def main():
                     detections.append(f"{class_name}: {confidence:.2f}")
                 
                 if frame_count % 30 == 0:  # Print every 30 frames
-                    print(f"Detections: {', '.join(detections)}")
+                    print(f"Objects: {', '.join(detections)}")
+            
+            # Print face recognitions
+            if recognized_faces and frame_count % 30 == 0:
+                face_names = [f"{face['name']}" + (f" ({face['confidence']:.2f})" if face['known'] else "") 
+                             for face in recognized_faces]
+                print(f"Faces: {', '.join(face_names)}")
     
     except KeyboardInterrupt:
         print("\nStopping detection...")

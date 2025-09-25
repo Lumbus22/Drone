@@ -7,12 +7,14 @@ Real-time object detection using YOLO11 model with USB camera integration. This 
 - 🎯 Real-time object detection using YOLO11
 - 📷 USB camera integration with auto-detection
 - 🔄 **Robust USB reconnection** - automatically handles unstable connections
+- 👤 **Person recognition** - identify yourself and your team members
 - ⚡ GPU acceleration support (CUDA)
 - 🎨 Customizable visualization options
 - 📊 FPS monitoring and performance metrics
 - 💾 Frame saving and detection logging
 - ⚙️ Easy configuration management
 - 🛡️ Error recovery and connection monitoring
+- 🎯 **Smart face database** - persistent face storage and management
 
 ## Requirements
 
@@ -32,7 +34,12 @@ Real-time object detection using YOLO11 model with USB camera integration. This 
    pip install -r requirements.txt
    ```
 
-3. **The YOLO11 model will be automatically downloaded** on first run. The default model (`yolo11n.pt`) is lightweight and fast.
+3. **Install face recognition (optional)**:
+   ```bash
+   python install_face_recognition.py
+   ```
+
+4. **The YOLO11 model will be automatically downloaded** on first run. The default model (`yolo11n.pt`) is lightweight and fast.
 
 ## Quick Start
 
@@ -70,7 +77,50 @@ python main.py --max-reconnect 10 --reconnect-delay 3.0
 
 # Test reconnection with demo
 python demo_reconnect.py
+
+# Enable face recognition
+python main.py --face-recognition
+
+# Register your team
+python register_faces.py --team
 ```
+
+## Person Recognition Setup
+
+### Quick Team Registration
+
+The easiest way to set up person recognition for your team:
+
+```bash
+# 1. Register your team members
+python register_faces.py --team
+
+# 2. Run detection with face recognition
+python main.py --face-recognition
+```
+
+### Individual Registration
+
+Register people one by one:
+
+```bash
+# Register from camera
+python register_faces.py --name "John" --camera --description "Team lead"
+
+# Register from image files
+python register_faces.py --name "Jane" --images photo1.jpg photo2.jpg
+
+# Interactive registration
+python register_faces.py --interactive
+```
+
+### During Detection
+
+While running the main program:
+- Press **'r'** to register a new person from the current camera view
+- Face recognition runs automatically if enabled
+- Green boxes = recognized team members
+- Red boxes = unknown people
 
 ### Find Available Cameras
 
@@ -129,6 +179,18 @@ CAMERA_CONFIG = {
 }
 ```
 
+### Face Recognition Settings
+```python
+FACE_RECOGNITION_CONFIG = {
+    "enabled": True,  # Enable/disable face recognition
+    "database_path": "faces_database",  # Face database directory
+    "recognition_threshold": 0.6,  # Lower = more strict matching
+    "face_detection_model": "hog",  # "hog" (faster) or "cnn" (more accurate)
+    "min_face_size": 50,  # Minimum face size in pixels
+    "save_unknown_faces": True,  # Save unknown faces for review
+}
+```
+
 ### Display Settings
 ```python
 DISPLAY_CONFIG = {
@@ -151,6 +213,22 @@ YOLO11 can detect 80 different object classes from the COCO dataset, including:
 **And many more...**
 
 See `config.py` for the complete list.
+
+## Face Recognition
+
+The system can recognize **unlimited people** that you register in the face database. Recognition works by:
+
+1. **Detecting faces** in the camera feed using advanced algorithms
+2. **Encoding facial features** into mathematical representations
+3. **Comparing** with stored encodings of known people
+4. **Identifying** matches above the confidence threshold
+
+### Recognition Features:
+- **Multiple faces** - can recognize several people simultaneously
+- **High accuracy** - adjustable confidence threshold
+- **Fast processing** - optimized for real-time performance
+- **Persistent storage** - face database survives program restarts
+- **Unknown face capture** - automatically saves unrecognized faces for review
 
 ## Troubleshooting
 
