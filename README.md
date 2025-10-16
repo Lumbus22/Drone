@@ -11,6 +11,6 @@ Mechanical:
 - Print and test planetary gear set
 - Calculate necesary torque for moving the robot
 
-Copmuter:
+Computer:
 - Setup Computer vision
   
