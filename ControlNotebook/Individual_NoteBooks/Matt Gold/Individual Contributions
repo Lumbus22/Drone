@@ -6,3 +6,14 @@ https://www.amazon.com/Shoulder-Stainless-Bearing-Positioned-Stripper/dp/B0CNND7
 
 https://www.amazon.com/iexcell-Partially-Threaded-Thread-Socket/dp/B0DR1RX2BP/ref=sr_1_1?crid=22724IH7DL47W&dib=eyJ2IjoiMSJ9.zUYcldr_cwGo42fiCLn7f1hpWa8WEoMLIVA0CF-s1bvqpMN94ILzRbf4wlAWhPPMNQbbfpgRFV8xmWFwaZx-YMzQEyjAMTmZRgrWoH8xZVtYTUcfMjo1fWI9d_gKnBofF2K9GMWcVQNEOTsxrtoyG9rpJRB6MVw11F5VWJDIjG-Ak_jdRPCgHNy5jKUbDzPde3sc_-Tv9awdM1PRZPiJySR9U1N1MZNYm4pfOLwD0FI.rEqi84su5PFKvlbV1Z4w35HMQ7_963HrxPgIdQEZdSo&dib_tag=se&keywords=iexcell%2Bm4%2Bpartially%2Bthreaded%2B65mmm&qid=1769619701&sprefix=iexcell%2Bm4%2Bpartially%2Bthreaded%2B65mm%2Caps%2C100&sr=8-1&th=1
 - partially threaded 65mm screws for rollers
+
+- proposed update plate and carrier idea due to lack of strength in planet axels.  
+- screws will now act as the axels and will be inserted through the bottom of the carrier, go through the planets, and screw into the plate which will hold everything together
+- heat inserts will be placed into the plate only
+
+- screws will have shoulders instead of being fully threaded to minimize friction and maximize torque and speed
+- will look into buying M2 25mm screws to test while we wait for shoulders to arrive (3+ weeks)
+
+- looking into material changes/upgrades
+    - TPU for rollers & Nylon for gears
+    - waiting for HVAMC response about how to print using these materials & the cost per gram
