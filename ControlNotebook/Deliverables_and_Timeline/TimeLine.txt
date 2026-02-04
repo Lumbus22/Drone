@@ -13,7 +13,7 @@ Need program for controlling all 4 motor independantly completed by the end of s
 Updates:
 
 
-9/8/2025 \
+9/8/2025
 -Current MOtors are two week and fragile. 
 -Contacting Suppliers for Hallow Shaft pancake motors with around ~ 2.0kgf-cm
 
@@ -30,7 +30,9 @@ Gener updated for November:
 -Prototype wheel design finalized
 
 MAIN END OF SD1 UPDATE (12/3/2025):
-The prototype was not finished due to the prints not being finshed before end of semester but all designs and electronics for a basic prototype were complete. The Arduino ESP32 was able to control the motors individually with a bluetooth controller but machine vision is on hold for the time being due to problems with the devices used (Raspberry Pi is too slow, Coral TPU documents were removed by google).
+The prototype was not finished due to the prints not being finshed before end of semester but all designs and electronics for a basic prototype were complete. 
+The Arduino ESP32 was able to control the motors individually with a bluetooth controller but machine vision is on hold for the time being due to problems with the devices used 
+(Raspberry Pi is too slow, Coral TPU documents were removed by google).
 
 SD2 Start:
 1/21/2026
