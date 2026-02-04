@@ -13,7 +13,7 @@ Need program for controlling all 4 motor independantly completed by the end of s
 Updates:
 
 
-9/8/2025 \
+9/8/2025
 -Current MOtors are two week and fragile. 
 -Contacting Suppliers for Hallow Shaft pancake motors with around ~ 2.0kgf-cm
 
