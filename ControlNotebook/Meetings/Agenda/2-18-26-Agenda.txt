@@ -1,0 +1,2 @@
+Inform the current progress of wheel after important parts arrived
+Show that video streaming is working
