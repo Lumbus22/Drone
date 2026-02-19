@@ -1,1 +1,22 @@
+Remote control rpi:
+Remote into raspberry pi via https://connect.raspberrypi.com or do this on the raspberry pi (rpi) itself
+Go into preferences->control centre->interfaces then enable SSH
+Reboot is SSH was off if not continue
+go into the terminal and use command ifconfig to get ip of rpi should be under wlan0: inet (ip here)
+use command whoami to get name of the rpi make sure you also know password for the rpi
+use command "ssh name@ip#" ex: ssh edwin@123.456.789 then type in password
+
+Code on rpi:
+Assumiing on VS code and remote shell library installed
+click blue double arrow in very bottom left
+follow the prompts ie connect to the ip, type in password
+here you can add files and code
+
+Start video streaming:
+Get the code file in the individual notebook for edwin called 'videoStream.py' on the rpi
+in the terminal in vscode for rpi update using 'sudo apt update'. (should be done before any project)
+if libraries werent previously installed use 'sudo apt install -y python3-flask python3-opencv python3-picamera2'
+in the terminal in vscode for the rpi cd into the location with the python code file
+use command python3 codename.py for our case use 'python3 videoStream.py' to start the video stream
+to access the video stream use in your browser type in the ip address of the rpi and add :5000/video_feed ex:'123.456.789:5000/video_feed'
 
