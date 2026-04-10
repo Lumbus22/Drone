@@ -11,6 +11,7 @@ Assumiing on VS code and remote shell library installed
 click blue double arrow in very bottom left
 follow the prompts ie connect to the ip, type in password
 here you can add files and code
+There may be a terminal prompt also asking for a password
 
 Start video streaming:
 Get the code file in the individual notebook for edwin called 'videoStream.py' on the rpi
